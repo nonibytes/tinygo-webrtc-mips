@@ -82,9 +82,17 @@ tinygo build -tags "cgo" -o webrtc-mips .
 - MIPS router deployment target
 
 ## Build Results
-- **Standard Go MIPS**: 4.5MB static binary ✅
-- **TinyGo MIPS**: Has musl header conflicts ❌ (use standard Go instead)
-- **Build command**: `CGO_ENABLED=1 CC=mips-linux-gnu-gcc GOOS=linux GOARCH=mips go build -ldflags="-extldflags=-static" -o webrtc-mips-static .`
+
+### cgo-openssl branch
+- **Binary size**: 4.5MB static (stripped)
+- **OpenSSL libs**: ~9.6MB
+- **Build command**: `CGO_ENABLED=1 CC=mips-linux-gnu-gcc GOOS=linux GOARCH=mips go build -ldflags="-extldflags=-static" -o webrtc-mips .`
+
+### cgo-mbedtls branch
+- **Binary size**: 4.5MB static (stripped)
+- **mbedTLS libs**: ~1.3MB (much smaller!)
+- **Build command**: Same as above
 
 ## Open Questions
 - Need to test on real MIPS hardware or QEMU
+- X25519 not available in mbedTLS (uses P-256 instead)

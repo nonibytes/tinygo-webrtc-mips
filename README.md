@@ -8,7 +8,7 @@ Build pion/webrtc for MIPS routers with CGO crypto backends.
 |--------|---------------|--------|-------------|
 | `master` | Go stdlib | Base | - |
 | `cgo-openssl` | OpenSSL | ✅ Working | 4.5MB |
-| `cgo-mbedtls` | mbedTLS | 🚧 In Progress | TBD |
+| `cgo-mbedtls` | mbedTLS | ✅ Working | 4.5MB |
 
 ## Problem
 
@@ -47,7 +47,20 @@ mips-linux-gnu-strip webrtc-mips
 ### Build for MIPS (mbedTLS branch)
 ```bash
 git checkout cgo-mbedtls
-# See BUILD.md for mbedTLS-specific instructions
+
+# Download and cross-compile mbedTLS
+cd /tmp && wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/v3.5.0.tar.gz -O mbedtls-3.5.0.tar.gz
+tar xzf mbedtls-3.5.0.tar.gz && cd mbedtls-3.5.0
+CC=mips-linux-gnu-gcc AR=mips-linux-gnu-ar make lib
+mkdir -p /tmp/mbedtls-mips/lib /tmp/mbedtls-mips/include
+cp library/*.a /tmp/mbedtls-mips/lib/
+cp -r include/* /tmp/mbedtls-mips/include/
+
+# Build static binary (4.5MB stripped)
+cd /path/to/tinygo-webrtc-mips
+CGO_ENABLED=1 CC=mips-linux-gnu-gcc GOOS=linux GOARCH=mips \
+  go build -ldflags="-extldflags=-static" -o webrtc-mips .
+mips-linux-gnu-strip webrtc-mips
 ```
 
 ## Project Structure
@@ -71,15 +84,15 @@ tinygo-webrtc-mips/
 
 | Primitive | Interface | OpenSSL | mbedTLS |
 |-----------|-----------|---------|---------|
-| AES-128/256 | `cipher.Block` | ✅ | 🚧 |
-| AES-GCM | `cipher.AEAD` | ✅ | 🚧 |
-| AES-CBC | `cipher.BlockMode` | ✅ | 🚧 |
-| AES-CTR | `cipher.Stream` | ✅ | 🚧 |
-| ECDH P-256 | custom | ✅ | 🚧 |
-| ECDH X25519 | custom | ✅ | 🚧 |
-| SHA-1/256/384/512 | `hash.Hash` | ✅ | 🚧 |
-| HMAC | `hash.Hash` | ✅ | 🚧 |
-| CSPRNG | `io.Reader` | ✅ | 🚧 |
+| AES-128/256 | `cipher.Block` | ✅ | ✅ |
+| AES-GCM | `cipher.AEAD` | ✅ | ✅ |
+| AES-CBC | `cipher.BlockMode` | ✅ | ✅ |
+| AES-CTR | `cipher.Stream` | ✅ | ✅ |
+| ECDH P-256 | custom | ✅ | ✅ |
+| ECDH X25519 | custom | ✅ | ❌ |
+| SHA-1/256/384/512 | `hash.Hash` | ✅ | ✅ |
+| HMAC | `hash.Hash` | ✅ | ✅ |
+| CSPRNG | `io.Reader` | ✅ | ✅ |
 
 ## Testing
 
