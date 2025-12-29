@@ -1,0 +1,48 @@
+[submodule "deps/webrtc"]
+	path = deps/webrtc
+	url = https://github.com/nonibytes/webrtc.git
+[submodule "deps/ice"]
+	path = deps/ice
+	url = https://github.com/nonibytes/ice.git
+[submodule "deps/dtls"]
+	path = deps/dtls
+	url = https://github.com/nonibytes/dtls.git
+[submodule "deps/stun"]
+	path = deps/stun
+	url = https://github.com/nonibytes/stun.git
+[submodule "deps/transport"]
+	path = deps/transport
+	url = https://github.com/nonibytes/transport.git
+[submodule "deps/turn"]
+	path = deps/turn
+	url = https://github.com/nonibytes/turn.git
+[submodule "deps/srtp"]
+	path = deps/srtp
+	url = https://github.com/nonibytes/srtp.git
+[submodule "deps/sctp"]
+	path = deps/sctp
+	url = https://github.com/nonibytes/sctp.git
+[submodule "deps/mdns"]
+	path = deps/mdns
+	url = https://github.com/nonibytes/mdns.git
+[submodule "deps/rtp"]
+	path = deps/rtp
+	url = https://github.com/nonibytes/rtp.git
+[submodule "deps/rtcp"]
+	path = deps/rtcp
+	url = https://github.com/nonibytes/rtcp.git
+[submodule "deps/sdp"]
+	path = deps/sdp
+	url = https://github.com/nonibytes/sdp.git
+[submodule "deps/interceptor"]
+	path = deps/interceptor
+	url = https://github.com/nonibytes/interceptor.git
+[submodule "deps/datachannel"]
+	path = deps/datachannel
+	url = https://github.com/nonibytes/datachannel.git
+[submodule "deps/logging"]
+	path = deps/logging
+	url = https://github.com/nonibytes/logging.git
+[submodule "deps/randutil"]
+	path = deps/randutil
+	url = https://github.com/nonibytes/randutil.git
