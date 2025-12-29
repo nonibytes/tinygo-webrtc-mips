@@ -8,7 +8,7 @@ Build pion/webrtc for MIPS routers with CGO crypto backends.
 |--------|---------------|--------|-------------|
 | `master` | Go stdlib | Base | - |
 | `cgo-openssl` | OpenSSL | ✅ Working | 4.5MB |
-| `cgo-mbedtls` | mbedTLS | 🚧 In Progress | TBD |
+| `cgo-mbedtls` | mbedTLS | ✅ Working | 4.5MB |
 
 ## Problem
 
@@ -71,15 +71,15 @@ tinygo-webrtc-mips/
 
 | Primitive | Interface | OpenSSL | mbedTLS |
 |-----------|-----------|---------|---------|
-| AES-128/256 | `cipher.Block` | ✅ | 🚧 |
-| AES-GCM | `cipher.AEAD` | ✅ | 🚧 |
-| AES-CBC | `cipher.BlockMode` | ✅ | 🚧 |
-| AES-CTR | `cipher.Stream` | ✅ | 🚧 |
-| ECDH P-256 | custom | ✅ | 🚧 |
-| ECDH X25519 | custom | ✅ | 🚧 |
-| SHA-1/256/384/512 | `hash.Hash` | ✅ | 🚧 |
-| HMAC | `hash.Hash` | ✅ | 🚧 |
-| CSPRNG | `io.Reader` | ✅ | 🚧 |
+| AES-128/256 | `cipher.Block` | ✅ | ✅ |
+| AES-GCM | `cipher.AEAD` | ✅ | ✅ |
+| AES-CBC | `cipher.BlockMode` | ✅ | ✅ |
+| AES-CTR | `cipher.Stream` | ✅ | ✅ |
+| ECDH P-256 | custom | ✅ | ✅ |
+| ECDH X25519 | custom | ✅ | ❌ |
+| SHA-1/256/384/512 | `hash.Hash` | ✅ | ✅ |
+| HMAC | `hash.Hash` | ✅ | ✅ |
+| CSPRNG | `io.Reader` | ✅ | ✅ |
 
 ## Testing
 

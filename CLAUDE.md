@@ -86,5 +86,14 @@ tinygo build -tags "cgo" -o webrtc-mips .
 - **TinyGo MIPS**: Has musl header conflicts ❌ (use standard Go instead)
 - **Build command**: `CGO_ENABLED=1 CC=mips-linux-gnu-gcc GOOS=linux GOARCH=mips go build -ldflags="-extldflags=-static" -o webrtc-mips-static .`
 
+## Verification
+
+Binary tested successfully with QEMU:
+```
+$ qemu-mips-static ./webrtc-mips-static
+TinyGo WebRTC MIPS Test
+WebRTC peer connection created successfully!
+```
+
 ## Open Questions
-- Need to test on real MIPS hardware or QEMU
+- Need to test on real MIPS router hardware
