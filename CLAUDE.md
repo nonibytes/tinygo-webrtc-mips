@@ -81,6 +81,10 @@ tinygo build -tags "cgo" -o webrtc-mips .
 - Production-ready build priority
 - MIPS router deployment target
 
+## Build Results
+- **Standard Go MIPS**: 4.5MB static binary ✅
+- **TinyGo MIPS**: Has musl header conflicts ❌ (use standard Go instead)
+- **Build command**: `CGO_ENABLED=1 CC=mips-linux-gnu-gcc GOOS=linux GOARCH=mips go build -ldflags="-extldflags=-static" -o webrtc-mips-static .`
+
 ## Open Questions
-- TinyGo not installed on this system - need to test TinyGo builds
-- Need to test MIPS cross-compilation with static OpenSSL
+- Need to test on real MIPS hardware or QEMU
