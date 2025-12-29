@@ -95,17 +95,29 @@ tinygo build -tags "cgo" -o webrtc-mips .
 
 ## Verification
 
-Both binaries tested successfully with QEMU:
+### Basic Peer Connection (QEMU) ✅
 ```
-$ qemu-mips-static ./webrtc-mips-static
-TinyGo WebRTC MIPS Test
-WebRTC peer connection created successfully!
-
 $ qemu-mips-static ./webrtc-mips-mbedtls-static
 TinyGo WebRTC MIPS Test
 WebRTC peer connection created successfully!
 ```
 
+### Full Audio Test (amd64 native) ✅
+```
+$ ./audiotest-amd64
+WebRTC Audio Echo Server
+Received offer from browser
+ICE Connection State: connected
+Got remote track: audio (codec: audio/opus)
+```
+Browser successfully connects and streams audio.
+
+### Full Audio Test (MIPS via QEMU) ❌
+QEMU user-mode emulation has timing issues with DTLS handshake.
+Basic peer connection works, but full offer/answer negotiation fails.
+**Requires real MIPS hardware for full audio test.**
+
 ## Open Questions
 - X25519 not available in mbedTLS (uses P-256 instead)
-- Need to test on real MIPS router hardware
+- Need to test full audio on real MIPS router hardware
+- OpenSSL binary also fails under QEMU (same DTLS timing issue)
