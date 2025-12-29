@@ -93,6 +93,19 @@ tinygo build -tags "cgo" -o webrtc-mips .
 - **mbedTLS libs**: ~1.3MB (much smaller!)
 - **Build command**: Same as above
 
+## Verification
+
+Both binaries tested successfully with QEMU:
+```
+$ qemu-mips-static ./webrtc-mips-static
+TinyGo WebRTC MIPS Test
+WebRTC peer connection created successfully!
+
+$ qemu-mips-static ./webrtc-mips-mbedtls-static
+TinyGo WebRTC MIPS Test
+WebRTC peer connection created successfully!
+```
+
 ## Open Questions
-- Need to test on real MIPS hardware or QEMU
 - X25519 not available in mbedTLS (uses P-256 instead)
+- Need to test on real MIPS router hardware
